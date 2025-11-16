@@ -1,0 +1,109 @@
+/* Coloca Loki à esquerda e o quiz à direita */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+  margin-top: -20px;
+}
+
+/* Loki na esquerda, grande */
+.loki-image {
+  width: 420px;  /* Tamanho maior */
+  padding: 18px;
+  border: 5px solid #fcb206;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgba(255, 180, 6, 0.7);
+  margin-top: 0;
+}
+
+/* Ajuste da imagem */
+.loki-image img {
+  width: 100%;
+  border-radius: 12px;
+  transition: 0.3s ease;
+}
+
+/* Caixa do quiz maior */
+.quiz-container {
+  background: rgba(255,255,255,0.03);
+  border: 2px solid rgba(247, 181, 2, 0.5);
+  border-radius: 20px;
+  padding: 45px;
+  width: 95%;
+  max-width: 620px;
+  margin: 0;
+  box-shadow: 
+      0 0 20px rgba(224, 165, 3, 0.2),
+      inset 0 0 25px rgba(200,170,90,0.07);
+  backdrop-filter: blur(10px);
+}
+
+/* Mantém o seu estilo original */
+
+body {
+  background-image: url('https://t3.ftcdn.net/jpg/02/63/38/30/360_F_263383000_d4IhBBolO4ba7uGrWWzYJ4nffQzum2bF.jpg'); 
+  color: #0e0d0d;
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  padding: 50px;
+  letter-spacing: 0.8px;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+h1 {
+  font-size: 2.7em;
+  margin-bottom: 25px;
+  color: #e8c77a;
+  text-shadow: 
+      0 0 10px #d4af37,
+      0 0 25px #a37b1c,
+      0 0 45px #6b5214;
+  font-weight: 800;
+  letter-spacing: 2px;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+  padding-bottom: 10px;
+}
+
+.question {
+  font-size: 1.4em;
+  margin-bottom: 20px;
+  color: #f8eacc;
+  text-shadow: 0 0 10px rgba(236, 194, 4, 0.2);
+}
+
+button {
+  display: block;
+  width: 100%;
+  background: rgba(0,0,0,0.65);
+  border: 2px solid #cea648;
+  color: #f2e4c3;
+  padding: 12px;
+  border-radius: 12px;
+  margin: 15px 0;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1.05em;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background: #d4b066;
+  color: #1a1a1a;
+  box-shadow: 
+    0 0 15px #d4b066,
+    0 0 35px #8b6a27;
+  transform: translateY(-3px) scale(1.02);
+}
+
+#resultado {
+  margin-top: 30px;
+  font-size: 1.3em;
+  color: #e8c77a;
+  text-shadow: 
+    0 0 10px rgba(255,230,170,0.4),
+    0 0 20px rgba(200,150,80,0.2);
+}

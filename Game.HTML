@@ -1,77 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="CSS/Game.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quiz Nórdico ⚔️</title>
-<style>
-  body {
-    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
-    color: #e6d6a8;
-    font-family: 'Cinzel', serif;
-    text-align: center;
-    padding: 40px;
-  }
-
-  h1 {
-    font-size: 2.2em;
-    margin-bottom: 20px;
-    color: #d4b56a;
-    text-shadow: 0 0 10px #bfa05a;
-  }
-
-  .quiz-container {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid #bfa05a;
-    border-radius: 15px;
-    padding: 25px;
-    width: 90%;
-    max-width: 500px;
-    margin: 0 auto;
-    box-shadow: 0 0 20px rgba(191,160,90,0.3);
-  }
-
-  .question {
-    font-size: 1.3em;
-    margin-bottom: 15px;
-  }
-
-  button {
-    display: block;
-    width: 100%;
-    background: transparent;
-    border: 1px solid #bfa05a;
-    color: #e6d6a8;
-    padding: 10px;
-    border-radius: 8px;
-    margin: 10px 0;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  button:hover {
-    background: #bfa05a;
-    color: #1a1a1a;
-    text-shadow: 0 0 8px #fff5cc;
-  }
-
-  #resultado {
-    margin-top: 25px;
-    font-size: 1.2em;
-    color: #bfa05a;
-  }
-</style>
 </head>
 <body>
 
-<h1>🪶 Quiz da Mitologia Nórdica</h1>
-<div class="quiz-container">
-  <div id="quiz">
-    <p class="question" id="pergunta"></p>
-    <div id="opcoes"></div>
+<div class="container">
+
+  <div class="loki-image">
+    <img src="IMG/Loki_Neutro.jpg" id="LokiImg">
   </div>
-  <p id="resultado"></p>
+
+  <div class="quiz-container">
+      <div id="quiz">
+        <p class="question" id="pergunta"></p>
+        <div id="opcoes"></div>
+      </div>
+      <p id="resultado"></p>
+  </div>
+
 </div>
+
+
 
 <script>
 const perguntas = [
@@ -94,11 +47,32 @@ const perguntas = [
     pergunta: "Como se chama o mundo dos humanos?",
     opcoes: ["Asgard", "Midgard", "Helheim"],
     correta: 1
+  },
+  {
+    pergunta: "O que significa 'Ragnarök'?",
+    opcoes: ["Fim do mundo e renascimento", "Criação dos deuses", "Viagem de Odin"],
+    correta: 0
+  },
+  {
+    pergunta: "Qual criatura é presa pela corrente Gleipnir?",
+    opcoes: ["Jormungandr", "Fenrir", "Sleipnir"],
+    correta: 1
+  },
+  {
+    pergunta: "Quem forjou a lança Gungnir?",
+    opcoes: ["Anões filhos de Ivaldi", "Gigantes do gelo", "Deuses Vanir"],
+    correta: 0
+  },
+  {
+    pergunta: "Qual é o nome do lobo gigante que devora o sol no Ragnarök?",
+    opcoes: ["Fenrir", "Sköll", "Hati"],
+    correta: 1
   }
 ];
 
 let indice = 0;
 let acertos = 0;
+let acertosSeguidos = 0;
 
 function carregarPergunta() {
   const q = perguntas[indice];
@@ -116,7 +90,13 @@ function carregarPergunta() {
 }
 
 function verificarResposta(opcao) {
-  if (opcao === perguntas[indice].correta) acertos++;
+  if (opcao === perguntas[indice].correta) {
+    acertos++;
+    atualizarLoki("acerto");
+  } else {
+    atualizarLoki("erro");
+  }
+
   indice++;
 
   if (indice < perguntas.length) {
@@ -137,6 +117,26 @@ function mostrarResultado() {
 }
 
 carregarPergunta();
+
+function atualizarLoki(tipo) {
+  const loki = document.getElementById("LokiImg");
+
+  if (tipo === "erro") {
+    loki.src = "IMG/Loki_Rindo.jpg";
+    acertosSeguidos = 0;
+  }
+  else if (tipo === "acerto") {
+    acertosSeguidos++;
+
+    if (acertosSeguidos >= 3) {
+      loki.src = "IMG/Loki_Serio.jpg";
+    } else {
+      loki.src = "IMG/Loki_Neutro.jpg";
+    }
+  }
+}
+
+
 </script>
 
 </body>
