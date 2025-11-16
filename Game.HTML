@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Nórdico ⚔️</title>
+<style>
+  body {
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    color: #e6d6a8;
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    padding: 40px;
+  }
+
+  h1 {
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    color: #d4b56a;
+    text-shadow: 0 0 10px #bfa05a;
+  }
+
+  .quiz-container {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #bfa05a;
+    border-radius: 15px;
+    padding: 25px;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(191,160,90,0.3);
+  }
+
+  .question {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: 1px solid #bfa05a;
+    color: #e6d6a8;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background: #bfa05a;
+    color: #1a1a1a;
+    text-shadow: 0 0 8px #fff5cc;
+  }
+
+  #resultado {
+    margin-top: 25px;
+    font-size: 1.2em;
+    color: #bfa05a;
+  }
+</style>
+</head>
+<body>
+
+<h1>🪶 Quiz da Mitologia Nórdica</h1>
+<div class="quiz-container">
+  <div id="quiz">
+    <p class="question" id="pergunta"></p>
+    <div id="opcoes"></div>
+  </div>
+  <p id="resultado"></p>
+</div>
+
+<script>
+const perguntas = [
+  {
+    pergunta: "Quem é o deus do trovão?",
+    opcoes: ["Odin", "Thor", "Loki"],
+    correta: 1
+  },
+  {
+    pergunta: "Qual é o nome da árvore que conecta os nove mundos?",
+    opcoes: ["Yggdrasil", "Fenrir", "Valhalla"],
+    correta: 0
+  },
+  {
+    pergunta: "Quem é o deus da trapaça?",
+    opcoes: ["Loki", "Balder", "Tyr"],
+    correta: 0
+  },
+  {
+    pergunta: "Como se chama o mundo dos humanos?",
+    opcoes: ["Asgard", "Midgard", "Helheim"],
+    correta: 1
+  }
+];
+
+let indice = 0;
+let acertos = 0;
+
+function carregarPergunta() {
+  const q = perguntas[indice];
+  document.getElementById("pergunta").textContent = q.pergunta;
+
+  const opcoesDiv = document.getElementById("opcoes");
+  opcoesDiv.innerHTML = "";
+
+  q.opcoes.forEach((texto, i) => {
+    const btn = document.createElement("button");
+    btn.textContent = texto;
+    btn.onclick = () => verificarResposta(i);
+    opcoesDiv.appendChild(btn);
+  });
+}
+
+function verificarResposta(opcao) {
+  if (opcao === perguntas[indice].correta) acertos++;
+  indice++;
+
+  if (indice < perguntas.length) {
+    carregarPergunta();
+  } else {
+    mostrarResultado();
+  }
+}
+
+function mostrarResultado() {
+  document.getElementById("quiz").innerHTML = "";
+  const resultado = document.getElementById("resultado");
+  const nota = (acertos / perguntas.length) * 100;
+
+  if (nota === 100) resultado.textContent = "⚔️ Glória! Você é um verdadeiro guerreiro de Asgard!";
+  else if (nota >= 50) resultado.textContent = "🪓 Honra! Você conhece bem os deuses.";
+  else resultado.textContent = "💀 Talvez Loki tenha te enganado... tente novamente.";
+}
+
+carregarPergunta();
+</script>
+
+</body>
+</html>
