@@ -133,7 +133,7 @@ footer {
 
 /* TAMANHO DAS IMAGENS QUE SERÃO MOSTRADAS */
 
-.baldur-inicio, .Loki-trap {
+.baldur-inicio, .Loki-trap, .aqueda, .Hel, .Fenrir, .Surtr, .Ragnarok {
     max-width: 600px;
     display: block;
     margin: auto;
